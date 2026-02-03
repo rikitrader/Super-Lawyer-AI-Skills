@@ -98,6 +98,115 @@ Motion Type × Legal Basis × Target × Remedy × Timing × Variant = 1,000+ Tit
 
 ---
 
+## NEW: Federal Pleading Engine
+
+The **Federal Trial Counsel** skill now includes a powerful TypeScript-based Federal Pleading Engine for generating Rule 12(b)(6)-resilient federal complaints.
+
+### Engine Features
+
+| Feature | Description |
+|---------|-------------|
+| **40+ Claims** | Complete federal causes of action library |
+| **Elements Analysis** | Maps facts to required legal elements |
+| **Twombly/Iqbal Compliance** | Automatic plausibility hardening |
+| **Rule 9(b) Detection** | Heightened pleading for fraud claims |
+| **MTD Risk Scoring** | 0-100 vulnerability assessment |
+| **Defense Anticipation** | Immunity, exhaustion, SOL analysis |
+| **Auto-Suggest** | Recommends claims based on facts |
+
+### Supported Federal Claims (40+)
+
+**Constitutional / Civil Rights (§ 1983)**
+- First Amendment retaliation & speech restriction
+- Fourth Amendment (false arrest, unlawful search, excessive force)
+- Fourteenth Amendment (procedural/substantive due process, equal protection)
+- Monell municipal liability
+- § 1985 conspiracy, § 1986 failure to prevent
+
+**Bivens Claims (Federal Actors)**
+- Fourth Amendment search/seizure
+- Fifth Amendment due process
+- Eighth Amendment deliberate indifference
+
+**Employment**
+- Title VII (disparate treatment, hostile work environment, retaliation)
+- ADEA age discrimination
+- ADA Title I disability discrimination
+- FMLA interference/retaliation
+- FLSA unpaid wages/overtime
+
+**Administrative / APA**
+- Arbitrary & capricious agency action
+- Unlawful withholding / unreasonable delay
+- Mandamus to compel ministerial duty
+- Habeas detention challenge
+
+**FTCA (Federal Tort Claims)**
+- Negligence, medical malpractice, wrongful death
+
+**Commercial / RICO / Antitrust / IP**
+- False Claims Act qui tam
+- RICO § 1962(c) and (d) conspiracy
+- Sherman Act §§ 1 and 2
+- Lanham Act trademark infringement
+- Copyright and patent infringement
+
+**Consumer Protection**
+- FCRA inaccurate reporting
+- FDCPA prohibited practices
+- TILA disclosure violations
+
+**ERISA**
+- § 502(a)(1)(B) benefits claims
+- § 502(a)(3) equitable relief
+
+**Tax**
+- Refund suits
+- Wrongful levy claims
+
+### MTD Risk Scoring Categories
+
+| Category | Weight | Factors |
+|----------|--------|---------|
+| Standing | 15% | Injury, causation, redressability |
+| Immunity | 20% | Qualified, sovereign, Eleventh Amendment |
+| Exhaustion | 15% | EEOC, FTCA SF-95, ERISA, APA |
+| SOL | 15% | Statute of limitations compliance |
+| Rule 9(b) | 10% | Fraud pleading particularity |
+| Monell | 10% | Municipal liability sufficiency |
+| Causation | 10% | Direct and proximate cause |
+| Damages | 5% | Quantification and proof |
+
+---
+
+## NEW: 19 Litigation Strategy Engines
+
+The Federal Trial Counsel now includes 19 comprehensive litigation strategy modules:
+
+| # | Engine | Purpose |
+|---|--------|---------|
+| 1 | **Defense Matrix** | Identify all Rule 12(b) and substantive defenses with counter-strategies |
+| 2 | **Jurisdictional Trap Detector** | Standing, exhaustion, abstention, removal defects |
+| 3 | **Complaint Structure Generator** | Rule 8 compliant pleading templates |
+| 4 | **MTD Counter-Strike** | Strategies to defeat motions to dismiss |
+| 5 | **Case Survival Probability** | Weighted outcome modeling (MTD/SJ/Trial %) |
+| 6 | **Judge Risk Model** | Judicial tendencies and strategy adaptation |
+| 7 | **Discovery Strategy** | Phase planning, ESI, depositions, expert strategy |
+| 8 | **Summary Judgment Builder** | SUMF, element analysis, burden shifting |
+| 9 | **Trial Strategy** | Theme, witnesses, exhibits, jury psychology |
+| 10 | **Appellate Strategy** | Preservation audit, standards of review, brief structure |
+| 11 | **Settlement Optimization** | Case valuation, timing, negotiation psychology |
+| 12 | **Jury Persuasion** | Narrative framing, cognitive bias leverage |
+| 13 | **Damages Modeling** | Economic/non-economic quantification |
+| 14 | **Evidence Credibility** | Admissibility, authentication, Daubert analysis |
+| 15 | **Pretrial Motions** | MIL, Daubert, procedural motion strategy |
+| 16 | **Sanctions Analyzer** | Spoliation exposure, Rule 37(e), ethical issues |
+| 17 | **Jury Instruction Builder** | Elements instructions, verdict forms |
+| 18 | **Judge Behavior Profiler** | Detailed judicial tendency profiles |
+| 19 | **Voir Dire Strategy** | Jury selection, bias detection, strike strategy |
+
+---
+
 ## Installation
 
 ### Prerequisites
@@ -126,7 +235,15 @@ ls ~/.claude/skills/
 # Should show: florida-trial-counsel federal-trial-counsel texas-family-trial-counsel
 ```
 
-3. The skills auto-load when Claude Code starts.
+3. Build the Federal Pleading Engine (optional, for CLI usage):
+
+```bash
+cd ~/.claude/skills/federal-trial-counsel/scripts/federal_pleading_engine
+npm install
+npm run build
+```
+
+4. The skills auto-load when Claude Code starts.
 
 ---
 
@@ -172,6 +289,24 @@ Ask for specific deliverables:
 "Generate a Strategic Blueprint for my Florida foreclosure defense"
 "Create an A/B/C classification for this federal antitrust case"
 "Draft a Motion for Temporary Orders for this Texas custody dispute"
+```
+
+### Method 4: Federal Pleading Engine CLI
+
+Use the command-line interface for federal complaints:
+
+```bash
+# Generate complaint from case input
+node dist/cli.js --input case.json --out ./output
+
+# Auto-suggest claims based on facts
+node dist/cli.js --input case.json --suggest
+
+# List all available claims
+node dist/cli.js --list
+
+# Specify output format
+node dist/cli.js --input case.json --format markdown
 ```
 
 ---
@@ -223,6 +358,10 @@ Ask for specific deliverables:
 - Emergency TRO/injunction practice
 - Class action defense
 - White-collar/DOJ investigation support
+- **NEW: 40+ Federal Causes of Action with Elements**
+- **NEW: TypeScript Pleading Engine**
+- **NEW: MTD Risk Scoring (0-100)**
+- **NEW: 19 Litigation Strategy Modules**
 
 **Key Files:**
 | File | Purpose |
@@ -230,6 +369,8 @@ Ask for specific deliverables:
 | `SKILL.md` | Main skill definition |
 | `workflows/00-master-case-analysis.md` | 7-phase auto-trigger workflow |
 | `references/case_strategy_system.md` | Federal Strategic Blueprint |
+| `references/federal_litigation_engines.md` | 19 litigation strategy modules |
+| `scripts/federal_pleading_engine/` | TypeScript pleading engine |
 
 **Supported Case Types:**
 - Diversity jurisdiction cases
@@ -239,6 +380,13 @@ Ask for specific deliverables:
 - Emergency injunctions
 - White-collar defense
 - Regulatory enforcement
+- Civil rights (§ 1983, Bivens)
+- Employment (Title VII, ADEA, ADA, FMLA, FLSA)
+- FTCA claims
+- RICO/Antitrust
+- Consumer protection (FCRA, FDCPA, TILA)
+- ERISA benefits disputes
+- Tax refund suits
 
 ---
 
@@ -288,6 +436,7 @@ All three agents execute the same 7-phase workflow:
 │  │ • Case questionnaire completion                              │   │
 │  │ • A/B/C System classification                                │   │
 │  │ • Automatic document requests (existing cases)              │   │
+│  │ • [Federal] Auto-suggest claims via Pleading Engine         │   │
 │  └─────────────────────────────────────────────────────────────┘   │
 │                              ↓                                      │
 │  ┌─────────────────────────────────────────────────────────────┐   │
@@ -302,6 +451,7 @@ All three agents execute the same 7-phase workflow:
 │  │ • Pleadings review                                           │   │
 │  │ • Discovery status                                           │   │
 │  │ • Order compliance check                                     │   │
+│  │ • [Federal] MTD risk assessment via Pleading Engine         │   │
 │  └─────────────────────────────────────────────────────────────┘   │
 │                              ↓                                      │
 │  ┌─────────────────────────────────────────────────────────────┐   │
@@ -309,6 +459,7 @@ All three agents execute the same 7-phase workflow:
 │  │ • Jurisdiction-specific statute research                     │   │
 │  │ • Case law analysis                                          │   │
 │  │ • Precedent clustering                                       │   │
+│  │ • [Federal] 19 Litigation Engine analysis                   │   │
 │  └─────────────────────────────────────────────────────────────┘   │
 │                              ↓                                      │
 │  ┌─────────────────────────────────────────────────────────────┐   │
@@ -325,6 +476,7 @@ All three agents execute the same 7-phase workflow:
 │  │ • Priority 1: Must-file documents                           │   │
 │  │ • Priority 2: Should-file documents                         │   │
 │  │ • Priority 3: Consider-filing documents                     │   │
+│  │ • [Federal] Element-by-element complaint generation         │   │
 │  └─────────────────────────────────────────────────────────────┘   │
 │                              ↓                                      │
 │  ┌─────────────────────────────────────────────────────────────┐   │
@@ -332,9 +484,68 @@ All three agents execute the same 7-phase workflow:
 │  │ • Citation verification                                      │   │
 │  │ • Formatting compliance                                      │   │
 │  │ • Filing checklist                                           │   │
+│  │ • [Federal] Twombly/Iqbal plausibility verification         │   │
 │  └─────────────────────────────────────────────────────────────┘   │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Federal Pleading Engine Input Format
+
+```json
+{
+  "court": {
+    "district": "Middle District of Florida",
+    "division": "Orlando",
+    "state": "FL"
+  },
+  "parties": {
+    "plaintiffs": [{
+      "name": "John Doe",
+      "citizenship": "Florida",
+      "entity_type": "individual",
+      "residence": "Orlando, FL"
+    }],
+    "defendants": [{
+      "name": "City of Orlando",
+      "type": "local",
+      "capacity": "official",
+      "citizenship": "Florida",
+      "entity_type": "municipality",
+      "role_title": "Municipal Corporation"
+    }]
+  },
+  "facts": [{
+    "date": "2025-06-15",
+    "location": "Orlando, FL",
+    "actors": ["Officer Smith", "John Doe"],
+    "event": "Description of what happened",
+    "documents": ["body cam footage", "medical records"],
+    "harm": "injuries suffered",
+    "damages_estimate": "$250,000",
+    "evidence": ["video", "photos"],
+    "witnesses": ["Jane Doe"]
+  }],
+  "claims_requested": ["1983_fourth_excessive_force"],
+  "relief_requested": ["money", "injunction", "fees", "costs"],
+  "exhaustion": {
+    "ftca_admin_claim_filed": false,
+    "eeoc_charge_filed": false,
+    "erisa_appeal_done": false,
+    "agency_final_action": false
+  },
+  "limitations": {
+    "key_dates": {
+      "injury_date": "2025-06-15"
+    }
+  },
+  "goals": {
+    "settlement_target": "$500,000",
+    "non_monetary_goals": ["policy change"]
+  }
+}
 ```
 
 ---
@@ -394,7 +605,25 @@ We believe the bank lacks standing.
 - Filing queue: Answer with Affirmative Defenses, Motion to Dismiss (Standing), Discovery (business records authentication)
 - Key strategy: Attack standing, chain of title, business records
 
-### Example 2: Federal Removal
+### Example 2: Federal Excessive Force (§ 1983)
+
+**Input:**
+```
+Client was pulled over for a broken taillight in Orlando.
+Officer Smith used a taser despite client being compliant.
+Client suffered burns, cardiac arrhythmia, and PTSD.
+Body cam footage shows client with hands up.
+```
+
+**Output:**
+- Auto-suggested claims: `1983_fourth_excessive_force`, `1983_monell_municipal_liability`
+- Elements Table with fact-to-element mapping
+- MTD Risk Score: 35/100 (favorable)
+- Defense anticipation: Qualified immunity analysis
+- Draft complaint counts with Twombly/Iqbal compliance
+- Recommended discovery: Body cam, training records, prior complaints
+
+### Example 3: Federal Removal
 
 **Input:**
 ```
@@ -412,7 +641,7 @@ Can we remove?
 - Recommendation: File Notice of Removal within 30 days
 - Draft Notice of Removal provided
 
-### Example 3: Texas Custody Modification
+### Example 4: Texas Custody Modification
 
 **Input:**
 ```
@@ -452,10 +681,39 @@ have dropped from A's to D's. We're in Tarrant County.
 │
 ├── federal-trial-counsel/
 │   ├── SKILL.md
+│   ├── README.md
+│   ├── MANIFEST.md
+│   ├── .gitignore
 │   ├── workflows/
 │   │   └── 00-master-case-analysis.md
-│   └── references/
-│       └── case_strategy_system.md
+│   ├── references/
+│   │   ├── case_strategy_system.md
+│   │   └── federal_litigation_engines.md      # NEW: 19 modules
+│   ├── scripts/
+│   │   ├── federal_pleading_engine/           # NEW: TypeScript engine
+│   │   │   ├── skill.json
+│   │   │   ├── README.md
+│   │   │   ├── schema.ts
+│   │   │   ├── claim_library.ts               # 40+ claims
+│   │   │   ├── elements.ts
+│   │   │   ├── mapper.ts
+│   │   │   ├── drafter.ts
+│   │   │   ├── risk.ts                        # MTD risk scoring
+│   │   │   ├── cli.ts
+│   │   │   └── examples/
+│   │   │       ├── sample_case_input.json
+│   │   │       └── sample_output.md
+│   │   └── courtlistener/
+│   ├── modules/
+│   │   ├── case_analysis_engine.md
+│   │   ├── strategy_scoring_system.md
+│   │   ├── board_risk_dashboard.md
+│   │   ├── case_timeline_builder.md
+│   │   └── mandamus_engine.md
+│   └── assets/templates/
+│       ├── pleadings/
+│       ├── motions/
+│       └── discovery/
 │
 └── texas-family-trial-counsel/
     ├── SKILL.md
@@ -482,6 +740,8 @@ have dropped from A's to D's. We're in Tarrant County.
 4. **Local Rules:** Check local court rules for specific requirements.
 
 5. **Jurisdiction-Specific:** Each agent is optimized for its specific jurisdiction. Do not use Florida templates for Texas cases, etc.
+
+6. **Twombly/Iqbal Compliance:** Federal complaints generated by the Pleading Engine should be reviewed for plausibility under current Supreme Court standards.
 
 ---
 

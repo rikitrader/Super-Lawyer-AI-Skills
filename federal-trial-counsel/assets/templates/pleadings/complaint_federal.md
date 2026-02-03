@@ -2,9 +2,28 @@
 name: Federal Civil Complaint
 court: U.S. District Court, Middle District of Florida
 rule: FRCP Rule 8
+integration: federal_pleading_engine
 ---
 
 # FEDERAL CIVIL COMPLAINT TEMPLATE
+
+## Integration with Federal Pleading Engine
+
+This template integrates with the Federal Pleading Engine for elements-based drafting:
+
+**Location:** `scripts/federal_pleading_engine/`
+
+**Process:**
+1. Create `CASE_INPUT` JSON with facts, parties, and claims
+2. Run `node dist/cli.js --input case.json --suggest` to identify viable claims
+3. Run `node dist/cli.js --input case.json --out ./output` to generate draft
+4. Review MTD Risk Score and address fact gaps
+5. Customize generated counts with case-specific details
+6. Verify Twombly/Iqbal plausibility for each element
+
+**Supported Claims:** 40+ federal causes of action with elements definitions
+
+---
 
 ```
 UNITED STATES DISTRICT COURT

@@ -7,6 +7,39 @@ purpose: "Complete federal case analysis from intake through strategic document 
 court: "U.S. District Court (Middle District of Florida)"
 triggers: "New case, case review request, litigation strategy request"
 output: "Strategic Blueprint + All Required Documents"
+integration: "federal_pleading_engine, federal_litigation_engines"
+---
+
+## Integrated Engines
+
+This workflow integrates with the following engines:
+
+| Engine | Location | Purpose |
+|--------|----------|---------|
+| **Federal Pleading Engine** | `scripts/federal_pleading_engine/` | Elements-based complaint generation |
+| **Litigation Engines (19)** | `references/federal_litigation_engines.md` | Defense matrix, jurisdiction traps, trial strategy |
+| **CourtListener** | `scripts/courtlistener/` | Case law research |
+
+### Automatic Engine Activation
+
+When drafting complaints, the system:
+1. Analyzes facts against 40+ federal causes of action
+2. Maps facts to required elements
+3. Generates Twombly/Iqbal compliant allegations
+4. Calculates MTD risk score (0-100)
+5. Identifies fact gaps and recommends discovery
+
+### Usage
+
+**For New Cases:**
+```bash
+# Auto-suggest claims from facts
+node scripts/federal_pleading_engine/dist/cli.js --input case.json --suggest
+
+# Generate full complaint
+node scripts/federal_pleading_engine/dist/cli.js --input case.json --out ./output
+```
+
 ---
 
 ## Workflow Overview

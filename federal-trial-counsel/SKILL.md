@@ -95,6 +95,113 @@ For every case input, the system generates:
 
 ---
 
+## FEDERAL PLEADING ENGINE
+
+### Elements-Based Complaint Generation
+
+The Federal Pleading Engine provides comprehensive, Rule 12(b)(6)-resilient complaint drafting with:
+
+**Location:** `scripts/federal_pleading_engine/`
+
+#### Key Capabilities
+
+| Feature | Description |
+|---------|-------------|
+| **40+ Causes of Action** | Complete library of federal claims with elements |
+| **Elements Analysis** | Fact-to-element mapping for each claim |
+| **Twombly/Iqbal Compliance** | Automatic plausibility hardening |
+| **Rule 9(b) Detection** | Heightened pleading for fraud claims |
+| **MTD Risk Scoring** | 0-100 vulnerability assessment |
+| **Defense Anticipation** | Preemptive immunity/exhaustion analysis |
+| **Fact Gap Detection** | Missing allegations identified |
+
+#### Supported Claim Categories
+
+| Category | Examples |
+|----------|----------|
+| **Constitutional (§ 1983)** | Excessive force, false arrest, due process, equal protection, Monell |
+| **Bivens** | Fourth/Fifth/Eighth Amendment (with viability warnings) |
+| **Employment** | Title VII, ADEA, ADA, FMLA, FLSA |
+| **FTCA** | Negligence, medical malpractice, wrongful death |
+| **Commercial** | RICO, FCA qui tam, antitrust, IP |
+| **APA** | Arbitrary/capricious, unreasonable delay |
+| **Consumer** | FCRA, FDCPA, TILA |
+| **ERISA** | Benefits denial, equitable relief |
+
+#### Usage
+
+**CLI:**
+```bash
+# Generate complaint from case input
+node dist/cli.js --input case.json --out ./output
+
+# Auto-suggest claims based on facts
+node dist/cli.js --input case.json --suggest
+
+# List all available claims
+node dist/cli.js --list
+```
+
+**Input Format (CASE_INPUT):**
+```json
+{
+  "court": {"district":"", "division":"", "state":""},
+  "parties": {
+    "plaintiffs": [{"name":"", "citizenship":"", "entity_type":""}],
+    "defendants": [{"name":"", "type":"", "capacity":"", "role_title":""}]
+  },
+  "facts": [
+    {"date":"", "location":"", "actors":[], "event":"", "harm":"", "documents":[]}
+  ],
+  "claims_requested": ["auto_suggest" OR claim keys],
+  "relief_requested": ["money", "injunction", "declaratory", "fees"],
+  "exhaustion": {"eeoc_charge_filed": false, "ftca_admin_claim_filed": false}
+}
+```
+
+**Output Generated:**
+- Elements table for each claim
+- Pleading checklist (facts → elements)
+- Draft complaint with counts
+- Fact gaps report
+- MTD risk score with fixes
+- Jurisdiction analysis
+- Defense anticipation matrix
+
+---
+
+## LITIGATION STRATEGY ENGINES
+
+### Comprehensive Analysis Modules
+
+The skill includes 19 specialized litigation engines for complete case management:
+
+| Module | Purpose |
+|--------|---------|
+| **Defense Matrix** | Identify all Rule 12(b) and substantive defenses |
+| **Jurisdictional Trap Detector** | Standing, exhaustion, abstention, removal |
+| **Complaint Structure Generator** | Rule 8 compliant pleading templates |
+| **MTD Counter-Strike** | Strategies to defeat motions to dismiss |
+| **Case Survival Probability** | Weighted outcome modeling (MTD/SJ/Trial) |
+| **Judge Risk Model** | Judicial tendencies and strategy adaptation |
+| **Discovery Strategy** | Phase planning, ESI, depositions, experts |
+| **Summary Judgment Builder** | SUMF, element analysis, burden shifting |
+| **Trial Strategy** | Theme, witnesses, exhibits, jury psychology |
+| **Appellate Strategy** | Preservation, standards of review, brief structure |
+| **Settlement Optimization** | Valuation, timing, negotiation psychology |
+| **Jury Persuasion** | Narrative framing, cognitive bias leverage |
+| **Damages Modeling** | Economic/non-economic quantification |
+| **Evidence Credibility** | Admissibility, authentication, Daubert |
+| **Pretrial Motions** | MIL, Daubert, procedural motions |
+| **Sanctions Analyzer** | Spoliation, Rule 37(e), ethical exposure |
+| **Jury Instruction Builder** | Elements, verdict forms, special instructions |
+| **Judge Behavior Profiler** | Detailed judicial tendency analysis |
+| **Voir Dire Strategy** | Jury selection, bias detection, strikes |
+
+**Reference:** `references/federal_litigation_engines.md`
+
+---
+
 Elite United States federal trial attorney and strategic legal advisor for the **U.S. District Court, Middle District of Florida (Orlando Division)** with comprehensive federal civil litigation expertise.
 
 ## Overview
