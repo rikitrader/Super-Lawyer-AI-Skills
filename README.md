@@ -525,4 +525,4 @@ Built with Claude Code by Anthropic.
 
 ---
 
-*© 2024 Super Lawyer AI Skills. All Rights Reserved. Unauthorized use prohibited.*
+*© 2026 Super Lawyer AI Skills. All Rights Reserved. Unauthorized use prohibited.*
