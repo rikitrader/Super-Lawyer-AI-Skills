@@ -1,12 +1,47 @@
-# 10XAI Law Agents Team
+# Super Lawyer AI Skills
 
-**Elite AI-Powered Legal Co-Counsel System for Florida, Federal, and Texas Courts**
+**Deploy an Army of AI Lawyers to Understand Case Outcomes**
+
+---
+
+> **PRIVATE REPOSITORY - PERSONAL USE ONLY**
+>
+> This software is proprietary and confidential. Unauthorized copying, cloning,
+> forking, or distribution is strictly prohibited. Access is restricted to
+> explicitly authorized individuals only. See LICENSE for full terms.
+
+---
+
+## Important Legal Disclaimers
+
+```
+================================================================================
+                         CRITICAL NOTICES
+================================================================================
+
+1. NOT LEGAL ADVICE: This software helps you UNDERSTAND potential case outcomes
+   and analyze legal strategies. It is NOT a substitute for licensed attorneys.
+
+2. PERSONAL USE ONLY: This software is licensed exclusively for the personal
+   use of the authorized owner. Commercial use is prohibited.
+
+3. NO COPYING/CLONING: Unauthorized reproduction, distribution, or derivative
+   works are strictly prohibited and may result in legal action.
+
+4. ATTORNEY REVIEW REQUIRED: All outputs MUST be reviewed by a licensed
+   attorney before use in any legal proceeding.
+
+5. NO WARRANTY: Provided "as-is" without any guarantees of accuracy or
+   fitness for any particular purpose.
+
+================================================================================
+```
 
 ---
 
 ## Overview
 
-The **10XAI Law Agents Team** is a comprehensive suite of AI legal co-counsel skills designed for Claude Code. These agents provide full-lifecycle litigation support with auto-triggering workflows, strategic blueprint generation, and intelligent document drafting for three jurisdictions:
+**Super Lawyer AI Skills** is a powerful suite of AI legal co-counsel skills for Claude Code. These agents deploy an **army of specialized AI lawyers** to help you understand case outcomes, analyze legal strategies, and prepare comprehensive litigation materials for three jurisdictions:
 
 | Agent | Jurisdiction | Focus |
 |-------|--------------|-------|
@@ -452,16 +487,33 @@ have dropped from A's to D's. We're in Tarrant County.
 
 ## Support
 
-For issues, questions, or feature requests:
-
-- GitHub Issues: [Report an issue](https://github.com/yourusername/10XAI-Law-Agents-Team/issues)
-- Documentation: See individual SKILL.md files for detailed usage
+For authorized users only. Contact the repository owner directly.
 
 ---
 
 ## License
 
-MIT License - See LICENSE file for details.
+**PROPRIETARY - ALL RIGHTS RESERVED**
+
+This software is protected by copyright law. See LICENSE file for full terms.
+
+```
+================================================================================
+                        PROHIBITED ACTIVITIES
+================================================================================
+
+❌ CLONING this repository
+❌ DOWNLOADING the source code
+❌ FORKING or creating derivative works
+❌ COPYING any portion of this code
+❌ DISTRIBUTING to third parties
+❌ COMMERCIAL USE of any kind
+
+Violations will be pursued to the fullest extent of the law.
+================================================================================
+```
+
+**Personal Use Only** - Authorized access required for any modifications.
 
 ---
 
@@ -469,4 +521,8 @@ MIT License - See LICENSE file for details.
 
 Built with Claude Code by Anthropic.
 
-**10XAI Law Agents Team** - Transforming legal practice with intelligent AI co-counsel.
+**Super Lawyer AI Skills** - Deploy an Army of AI Lawyers to Understand Case Outcomes.
+
+---
+
+*© 2024 Super Lawyer AI Skills. All Rights Reserved. Unauthorized use prohibited.*
