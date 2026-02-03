@@ -1,0 +1,40 @@
+# Unencrypted skill directories (use .encrypted versions)
+florida-trial-counsel/
+federal-trial-counsel/
+texas-family-trial-counsel/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build output
+dist/
+*.js
+*.js.map
+*.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test output
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp

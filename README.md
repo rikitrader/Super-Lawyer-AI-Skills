@@ -32,6 +32,26 @@
 
 ---
 
+## 🔐 PROTECTED REPOSITORY - PASSWORD REQUIRED
+
+```
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║   ⚠️  THIS REPOSITORY CONTAINS ENCRYPTED SKILL FILES  ⚠️                      ║
+║                                                                               ║
+║   To unlock and install the AI lawyer skills, you need:                       ║
+║                                                                               ║
+║   1. Clone this repository                                                    ║
+║   2. Run: ./scripts/unlock.sh                                                 ║
+║   3. Enter the password (contact owner for access)                            ║
+║                                                                               ║
+║   See UNLOCK_INSTRUCTIONS.md for detailed steps.                              ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
 > **PRIVATE REPOSITORY - PERSONAL USE ONLY**
 >
 > This software is proprietary and confidential. Unauthorized copying, cloning,
