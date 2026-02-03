@@ -1,0 +1,302 @@
+# Florida Trial Counsel - Workflow Index
+# Complete litigation lifecycle for Florida County and Circuit Courts
+
+version: "1.0"
+jurisdiction: "Florida State Courts"
+court_levels:
+  - county
+  - circuit
+
+workflows:
+  # PRE-LITIGATION PHASE
+  - id: "00"
+    name: "intake-and-triage"
+    file: "00-intake-and-triage.md"
+    phase: "Pre-Litigation"
+    description: "Client intake, conflict check, case assessment, authority research"
+
+  - id: "01"
+    name: "case-evaluation"
+    file: "01-case-evaluation.md"
+    phase: "Pre-Litigation"
+    description: "Legal viability analysis, damages assessment, strategy development"
+
+  # FILING PHASE
+  - id: "02"
+    name: "complaint-drafting"
+    file: "02-complaint-drafting.md"
+    phase: "Filing"
+    description: "Draft complaint/petition, verify jurisdiction, attach exhibits"
+
+  - id: "03"
+    name: "filing-and-service"
+    file: "03-filing-and-service.md"
+    phase: "Filing"
+    description: "File with clerk, arrange service, track deadlines"
+
+  # RESPONSIVE PLEADINGS PHASE
+  - id: "04"
+    name: "answer-and-defenses"
+    file: "04-answer-and-defenses.md"
+    phase: "Responsive"
+    description: "Answer, affirmative defenses, counterclaims, crossclaims"
+
+  - id: "05"
+    name: "motion-practice-early"
+    file: "05-motion-practice-early.md"
+    phase: "Responsive"
+    description: "Motion to dismiss, motion for more definite statement, motion to strike"
+
+  # DISCOVERY PHASE
+  - id: "06"
+    name: "initial-disclosures"
+    file: "06-initial-disclosures.md"
+    phase: "Discovery"
+    description: "Rule 1.280(a) initial disclosures within 60 days"
+
+  - id: "07"
+    name: "written-discovery"
+    file: "07-written-discovery.md"
+    phase: "Discovery"
+    description: "Interrogatories, RFPs, RFAs, responses, objections"
+
+  - id: "08"
+    name: "depositions"
+    file: "08-depositions.md"
+    phase: "Discovery"
+    description: "Deposition notices, preparation, examination, summaries"
+
+  - id: "09"
+    name: "discovery-disputes"
+    file: "09-discovery-disputes.md"
+    phase: "Discovery"
+    description: "Motions to compel, protective orders, sanctions"
+
+  - id: "10"
+    name: "expert-discovery"
+    file: "10-expert-discovery.md"
+    phase: "Discovery"
+    description: "Expert designation, reports, Daubert challenges"
+
+  # DISPOSITIVE MOTION PHASE
+  - id: "11"
+    name: "summary-judgment"
+    file: "11-summary-judgment.md"
+    phase: "Dispositive"
+    description: "Motion for summary judgment, response, reply"
+
+  # PRETRIAL PHASE
+  - id: "12"
+    name: "case-management"
+    file: "12-case-management.md"
+    phase: "Pretrial"
+    description: "CMO compliance, track assignment, scheduling"
+
+  - id: "13"
+    name: "mediation-settlement"
+    file: "13-mediation-settlement.md"
+    phase: "Pretrial"
+    description: "Mediation preparation, settlement negotiations, offers of judgment"
+
+  - id: "14"
+    name: "pretrial-preparation"
+    file: "14-pretrial-preparation.md"
+    phase: "Pretrial"
+    description: "Pretrial statement, motions in limine, exhibit/witness lists"
+
+  # TRIAL PHASE
+  - id: "15"
+    name: "trial-preparation"
+    file: "15-trial-preparation.md"
+    phase: "Trial"
+    description: "Trial notebook, witness prep, exhibit prep, jury instructions"
+
+  - id: "16"
+    name: "trial-execution"
+    file: "16-trial-execution.md"
+    phase: "Trial"
+    description: "Voir dire, opening, examination, closing, verdict"
+
+  # POST-TRIAL PHASE
+  - id: "17"
+    name: "post-trial-motions"
+    file: "17-post-trial-motions.md"
+    phase: "Post-Trial"
+    description: "Motion for new trial, JNOV, relief from judgment"
+
+  - id: "18"
+    name: "judgment-enforcement"
+    file: "18-judgment-enforcement.md"
+    phase: "Post-Trial"
+    description: "Final judgment, execution, garnishment, liens"
+
+  - id: "19"
+    name: "appeal-preservation"
+    file: "19-appeal-preservation.md"
+    phase: "Post-Trial"
+    description: "Notice of appeal, record preparation, stay pending appeal"
+
+  # ANALYTICAL MODULES
+  - id: "20"
+    name: "precedent-clustering"
+    file: "20-precedent-clustering.md"
+    phase: "Analytics"
+    description: "Pattern analysis of appellate outcomes"
+
+  - id: "21"
+    name: "judge-profiling"
+    file: "21-judge-profiling.md"
+    phase: "Analytics"
+    description: "Public docket analysis for judicial tendencies"
+
+  - id: "22"
+    name: "timeline-optimization"
+    file: "22-timeline-optimization.md"
+    phase: "Analytics"
+    description: "Strategic deadline and motion scheduling"
+
+templates:
+  pleadings:
+    - complaint_circuit.md
+    - complaint_county.md
+    - complaint_breach_contract.md
+    - complaint_negligence.md
+    - complaint_fraud.md
+    - complaint_breach_fiduciary.md
+    - complaint_tortious_interference.md
+    - complaint_conversion.md
+    - complaint_declaratory_judgment.md
+    - complaint_injunction.md
+    - complaint_unjust_enrichment.md
+    - complaint_civil_theft.md
+    - complaint_defamation.md
+    - complaint_business_conspiracy.md
+    - answer_general.md
+    - answer_affirmative_defenses.md
+    - counterclaim.md
+    - crossclaim.md
+    - third_party_complaint.md
+    - amended_complaint.md
+    - reply_to_counterclaim.md
+
+  motions:
+    - motion_to_dismiss.md
+    - motion_to_dismiss_soj.md
+    - motion_to_dismiss_sol.md
+    - motion_to_dismiss_venue.md
+    - motion_more_definite_statement.md
+    - motion_to_strike.md
+    - motion_summary_judgment.md
+    - motion_partial_summary_judgment.md
+    - motion_to_compel.md
+    - motion_protective_order.md
+    - motion_sanctions.md
+    - motion_continuance.md
+    - motion_to_amend.md
+    - motion_default.md
+    - motion_set_aside_default.md
+    - motion_temporary_injunction.md
+    - motion_preliminary_injunction.md
+    - motion_in_limine.md
+    - motion_directed_verdict.md
+    - motion_new_trial.md
+    - motion_rehearing.md
+    - motion_relief_judgment.md
+    - motion_attorney_fees.md
+    - motion_costs.md
+    - motion_withdraw.md
+    - motion_substitute_counsel.md
+    - motion_extend_time.md
+    - motion_expedite.md
+
+  discovery:
+    - initial_disclosures.md
+    - interrogatories_general.md
+    - interrogatories_contract.md
+    - interrogatories_negligence.md
+    - interrogatories_fraud.md
+    - interrogatories_damages.md
+    - requests_production_general.md
+    - requests_production_contract.md
+    - requests_production_negligence.md
+    - requests_production_electronically_stored.md
+    - requests_admission_general.md
+    - requests_admission_contract.md
+    - requests_admission_authentication.md
+    - deposition_notice_party.md
+    - deposition_notice_corporate.md
+    - deposition_notice_nonparty.md
+    - subpoena_duces_tecum.md
+    - subpoena_deposition.md
+    - subpoena_trial.md
+    - discovery_response_template.md
+    - objections_to_discovery.md
+    - privilege_log.md
+    - expert_disclosure.md
+    - supplemental_disclosure.md
+
+  trial:
+    - pretrial_statement.md
+    - witness_list.md
+    - exhibit_list.md
+    - jury_instructions_proposed.md
+    - verdict_form.md
+    - voir_dire_questions.md
+    - opening_statement.md
+    - closing_argument.md
+    - direct_examination_party.md
+    - direct_examination_witness.md
+    - direct_examination_expert.md
+    - cross_examination_party.md
+    - cross_examination_witness.md
+    - cross_examination_expert.md
+    - impeachment_outline.md
+    - objections_quick_reference.md
+    - trial_notebook_index.md
+    - trial_day_checklist.md
+
+  evidence:
+    - exhibit_index_master.md
+    - authentication_worksheet.md
+    - hearsay_analysis.md
+    - foundation_checklist.md
+    - evidence_objections_chart.md
+    - demonstrative_exhibits_plan.md
+    - chain_of_custody.md
+
+  settlement:
+    - mediation_brief.md
+    - settlement_demand_letter.md
+    - settlement_agreement.md
+    - offer_of_judgment.md
+    - release_general.md
+    - stipulation_dismissal.md
+    - consent_judgment.md
+
+  orders:
+    - proposed_order_dismiss.md
+    - proposed_order_summary_judgment.md
+    - proposed_order_compel.md
+    - proposed_order_protective.md
+    - proposed_order_sanctions.md
+    - proposed_order_injunction.md
+    - proposed_order_default.md
+    - proposed_final_judgment.md
+    - proposed_order_fees.md
+
+reports:
+  - case_assessment_memo.md
+  - legal_research_memo.md
+  - strategy_memo.md
+  - precedent_cluster_report.md
+  - judge_profile_report.md
+  - timeline_optimizer_report.md
+  - settlement_valuation_memo.md
+  - risk_analysis_memo.md
+  - damages_calculation_memo.md
+  - litigator_playbook.md
+  - forensic_toolkit.md
+  - deposition_summary.md
+  - trial_brief.md
+  - post_trial_memo.md
+  - appeal_issues_memo.md

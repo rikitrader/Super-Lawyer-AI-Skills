@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "deadline.schema.json",
+  "title": "Texas Divorce Case Deadline",
+  "description": "Structured deadline tracking for Texas divorce litigation",
+  "type": "object",
+  "required": ["deadline_id", "cause_no", "type", "due_date", "description"],
+  "properties": {
+    "deadline_id": {
+      "type": "string",
+      "description": "Unique deadline identifier",
+      "pattern": "^DL-[0-9]{4}$"
+    },
+    "cause_no": {
+      "type": "string",
+      "description": "Court cause number"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "statutory",
+        "court_ordered",
+        "discovery",
+        "filing",
+        "hearing",
+        "trial",
+        "internal",
+        "external"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "answer_due",
+        "counterpetition",
+        "discovery_response",
+        "discovery_supplementation",
+        "expert_designation",
+        "mediation",
+        "pretrial_conference",
+        "trial_setting",
+        "motion_response",
+        "motion_hearing",
+        "temporary_orders",
+        "final_trial",
+        "post_trial",
+        "appeal",
+        "enforcement",
+        "modification",
+        "qdro",
+        "property_transfer",
+        "other"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Clear description of the deadline"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "due_time": {
+      "type": "string",
+      "description": "Time if applicable (e.g., 5:00 PM)"
+    },
+    "calculation": {
+      "type": "object",
+      "description": "How the deadline was calculated",
+      "properties": {
+        "trigger_event": {
+          "type": "string",
+          "description": "Event that triggered this deadline"
+        },
+        "trigger_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "days_from_trigger": {
+          "type": "integer"
+        },
+        "day_type": {
+          "type": "string",
+          "enum": ["calendar", "business", "court"]
+        },
+        "rule_reference": {
+          "type": "string",
+          "description": "TRCP or TFC rule governing this deadline"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "due_soon",
+        "due_today",
+        "overdue",
+        "completed",
+        "extended",
+        "waived",
+        "moot"
+      ]
+    },
+    "action_required": {
+      "type": "object",
+      "properties": {
+        "task_description": {
+          "type": "string"
+        },
+        "assigned_to": {
+          "type": "string"
+        },
+        "deliverable": {
+          "type": "string",
+          "description": "What must be filed or produced"
+        },
+        "filing_method": {
+          "type": "string",
+          "enum": ["efiling", "paper", "email", "hand_delivery", "mail", "none"]
+        }
+      }
+    },
+    "warning_triggers": {
+      "type": "object",
+      "description": "When to send warnings before deadline",
+      "properties": {
+        "first_warning_days": {
+          "type": "integer",
+          "description": "Days before deadline for first warning"
+        },
+        "second_warning_days": {
+          "type": "integer",
+          "description": "Days before deadline for second warning"
+        },
+        "final_warning_days": {
+          "type": "integer",
+          "description": "Days before deadline for final warning"
+        }
+      }
+    },
+    "consequences": {
+      "type": "object",
+      "properties": {
+        "if_missed": {
+          "type": "string",
+          "description": "Consequence of missing this deadline"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["case_dismissal", "waiver", "sanctions", "default", "procedural", "minor"]
+        },
+        "curable": {
+          "type": "boolean",
+          "description": "Whether deadline can be extended or cured"
+        },
+        "extension_mechanism": {
+          "type": "string",
+          "description": "How to seek extension if available"
+        }
+      }
+    },
+    "related_deadlines": {
+      "type": "array",
+      "description": "Other deadlines triggered by or related to this one",
+      "items": {
+        "type": "string",
+        "description": "Deadline ID"
+      }
+    },
+    "court_setting": {
+      "type": "object",
+      "description": "If deadline involves court appearance",
+      "properties": {
+        "hearing_type": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "courtroom": {
+          "type": "string"
+        },
+        "judge": {
+          "type": "string"
+        },
+        "duration_estimated": {
+          "type": "string"
+        }
+      }
+    },
+    "completion": {
+      "type": "object",
+      "properties": {
+        "completed_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "completed_by": {
+          "type": "string"
+        },
+        "confirmation_method": {
+          "type": "string",
+          "description": "How completion was confirmed (e.g., efile confirmation #)"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "extension_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "original_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "extended_to": {
+            "type": "string",
+            "format": "date"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "granted_by": {
+            "type": "string",
+            "enum": ["court", "agreement", "rule"]
+          },
+          "extension_date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}

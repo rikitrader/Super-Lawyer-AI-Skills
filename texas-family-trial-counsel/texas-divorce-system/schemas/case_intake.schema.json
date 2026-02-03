@@ -1,0 +1,377 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "case_intake.schema.json",
+  "title": "Texas Divorce Case Intake",
+  "description": "Structured intake data for Texas divorce litigation",
+  "type": "object",
+  "required": ["client", "spouse", "marriage", "case_type"],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "description": "Internal case tracking identifier"
+    },
+    "cause_no": {
+      "type": "string",
+      "description": "Court-assigned cause number once filed"
+    },
+    "court": {
+      "type": "object",
+      "properties": {
+        "court_number": {
+          "type": "string",
+          "description": "Court number (e.g., 308th)"
+        },
+        "court_name": {
+          "type": "string",
+          "description": "Full court designation"
+        },
+        "county": {
+          "type": "string",
+          "description": "County name"
+        },
+        "judge": {
+          "type": "string",
+          "description": "Presiding judge name"
+        }
+      }
+    },
+    "client": {
+      "type": "object",
+      "required": ["full_name", "address", "phone", "email"],
+      "properties": {
+        "full_name": {
+          "type": "string",
+          "description": "Client full legal name"
+        },
+        "maiden_name": {
+          "type": "string",
+          "description": "Maiden or former name if applicable"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": { "type": "string" },
+            "city": { "type": "string" },
+            "state": { "type": "string" },
+            "zip": { "type": "string" }
+          }
+        },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "dob": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of birth"
+        },
+        "ssn_last_four": {
+          "type": "string",
+          "description": "Last 4 digits of SSN for identification"
+        },
+        "employer": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "address": { "type": "string" },
+            "position": { "type": "string" },
+            "income_monthly": { "type": "number" }
+          }
+        },
+        "military_status": {
+          "type": "string",
+          "enum": ["none", "active_duty", "reserve", "veteran"]
+        }
+      }
+    },
+    "spouse": {
+      "type": "object",
+      "required": ["full_name"],
+      "properties": {
+        "full_name": {
+          "type": "string",
+          "description": "Spouse full legal name"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": { "type": "string" },
+            "city": { "type": "string" },
+            "state": { "type": "string" },
+            "zip": { "type": "string" },
+            "known": { "type": "boolean" }
+          }
+        },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "employer": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "address": { "type": "string" },
+            "income_monthly": { "type": "number" }
+          }
+        },
+        "military_status": {
+          "type": "string",
+          "enum": ["none", "active_duty", "reserve", "veteran", "unknown"]
+        },
+        "represented": {
+          "type": "boolean",
+          "description": "Whether spouse has legal representation"
+        },
+        "attorney_info": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "firm": { "type": "string" },
+            "phone": { "type": "string" },
+            "email": { "type": "string" }
+          }
+        }
+      }
+    },
+    "marriage": {
+      "type": "object",
+      "required": ["date", "county", "state"],
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of marriage"
+        },
+        "county": { "type": "string" },
+        "state": { "type": "string" },
+        "separation_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date parties separated"
+        },
+        "living_together": {
+          "type": "boolean",
+          "description": "Whether parties still cohabitate"
+        }
+      }
+    },
+    "case_type": {
+      "type": "object",
+      "required": ["contested", "has_children"],
+      "properties": {
+        "contested": {
+          "type": "boolean",
+          "description": "True if contested, false if agreed"
+        },
+        "has_children": {
+          "type": "boolean",
+          "description": "Whether minor children are involved"
+        },
+        "has_property": {
+          "type": "boolean",
+          "description": "Whether significant property division needed"
+        },
+        "has_debt": {
+          "type": "boolean",
+          "description": "Whether significant debt division needed"
+        },
+        "spousal_maintenance": {
+          "type": "boolean",
+          "description": "Whether spousal maintenance is an issue"
+        },
+        "protective_concerns": {
+          "type": "boolean",
+          "description": "Whether safety/protective order issues exist"
+        },
+        "hidden_assets": {
+          "type": "boolean",
+          "description": "Whether hidden asset discovery is anticipated"
+        },
+        "business_valuation": {
+          "type": "boolean",
+          "description": "Whether business valuation is needed"
+        }
+      }
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["full_name", "dob"],
+        "properties": {
+          "full_name": { "type": "string" },
+          "dob": {
+            "type": "string",
+            "format": "date"
+          },
+          "ssn_last_four": { "type": "string" },
+          "current_residence": {
+            "type": "string",
+            "enum": ["client", "spouse", "other"]
+          },
+          "school": { "type": "string" },
+          "special_needs": { "type": "boolean" },
+          "special_needs_description": { "type": "string" }
+        }
+      }
+    },
+    "property": {
+      "type": "object",
+      "properties": {
+        "real_property": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": { "type": "string" },
+              "type": {
+                "type": "string",
+                "enum": ["primary_residence", "rental", "vacation", "land", "commercial"]
+              },
+              "estimated_value": { "type": "number" },
+              "mortgage_balance": { "type": "number" },
+              "title_holder": { "type": "string" }
+            }
+          }
+        },
+        "vehicles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "year": { "type": "string" },
+              "make": { "type": "string" },
+              "model": { "type": "string" },
+              "estimated_value": { "type": "number" },
+              "loan_balance": { "type": "number" },
+              "title_holder": { "type": "string" }
+            }
+          }
+        },
+        "retirement_accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["401k", "ira", "pension", "403b", "military", "other"]
+              },
+              "institution": { "type": "string" },
+              "account_holder": { "type": "string" },
+              "estimated_value": { "type": "number" },
+              "premarital_portion": { "type": "number" }
+            }
+          }
+        },
+        "bank_accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["checking", "savings", "money_market", "cd", "other"]
+              },
+              "institution": { "type": "string" },
+              "account_holder": { "type": "string" },
+              "estimated_balance": { "type": "number" }
+            }
+          }
+        },
+        "businesses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "ownership_percentage": { "type": "number" },
+              "estimated_value": { "type": "number" },
+              "owner": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "debts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["credit_card", "personal_loan", "student_loan", "medical", "tax", "other"]
+          },
+          "creditor": { "type": "string" },
+          "balance": { "type": "number" },
+          "monthly_payment": { "type": "number" },
+          "account_holder": { "type": "string" }
+        }
+      }
+    },
+    "urgency_flags": {
+      "type": "object",
+      "properties": {
+        "domestic_violence": { "type": "boolean" },
+        "child_abuse_concerns": { "type": "boolean" },
+        "asset_dissipation": { "type": "boolean" },
+        "relocation_threat": { "type": "boolean" },
+        "pending_deadlines": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
+    },
+    "prior_orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["protective_order", "temporary_orders", "prior_divorce", "child_support", "other"]
+          },
+          "date": { "type": "string", "format": "date" },
+          "court": { "type": "string" },
+          "cause_no": { "type": "string" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "goals": {
+      "type": "object",
+      "properties": {
+        "primary_residence": {
+          "type": "string",
+          "enum": ["keep", "sell", "spouse_keep", "undecided"]
+        },
+        "conservatorship_goal": {
+          "type": "string",
+          "enum": ["joint_managing", "sole_managing", "possessory", "flexible"]
+        },
+        "primary_parent": {
+          "type": "string",
+          "enum": ["client", "spouse", "equal", "flexible"]
+        },
+        "relocation_plans": { "type": "boolean" },
+        "relocation_location": { "type": "string" },
+        "settlement_preference": {
+          "type": "string",
+          "enum": ["strongly_prefer_settlement", "open_to_settlement", "prepared_for_trial"]
+        },
+        "priority_issues": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "intake_metadata": {
+      "type": "object",
+      "properties": {
+        "intake_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "intake_attorney": { "type": "string" },
+        "conflict_check_complete": { "type": "boolean" },
+        "retainer_signed": { "type": "boolean" },
+        "retainer_amount": { "type": "number" }
+      }
+    }
+  }
+}
